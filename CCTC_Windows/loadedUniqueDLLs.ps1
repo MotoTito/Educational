@@ -6,6 +6,7 @@
 #and being used. Basically using the Get-Process command
 #to get the information then adding it to a dictionary with
 #the key being the path to the DLL and the value being the filename
+#then sorts it and prints it to screen
 
 $uniqueModules = @{}
 $procList = (get-process).id
@@ -22,4 +23,5 @@ foreach ($id IN $procList){
 		}
 	}	
 }
-write-output "$(foreach($key in $uniqueModules.keys) {Write-output "DLL: $($uniqueModules[$key]) `n`t Path: $($key) `n"})"| Sort | format-table
+
+$(foreach($key in $uniqueModules.keys) {Write-output "DLL: $($uniqueModules[$key]) `n `t Path: $($key) `n"}) | Sort
